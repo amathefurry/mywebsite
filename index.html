@@ -5,8 +5,8 @@
     <title>ama's website</title>
     <style>
         .selected {
-            border: solid;
-            opacity: 25%;
+            border: dotted;
+            background-color: #00f;
         }
     </style>
 </head>
@@ -46,8 +46,8 @@ background-size: cover;
     padding-left: 16px;
     "> 
     <div 
-    id="app"
-    onclick="iconClick(getElementById('app'))"
+    id="socials"
+    onclick="iconClick(getElementById('socials'))"
     style="text-align: center; 
     padding: 2px; filter: drop-shadow(0 0 8px black); 
     width: fit-content">
@@ -57,7 +57,7 @@ background-size: cover;
         border-radius: 64px;">
             <p style="
             margin: 0px; 
-            color: #0f0; 
+            color: #fff; 
             ">Socials</p>
         </div>
     </div>
@@ -73,6 +73,27 @@ background-size: cover;
     ">
     <h1>Welcome to amaOS!</h1>
     </div>
+
+    <div
+    class="window"
+    id="socials"
+    >
+    <div
+    class="windowheader"
+    id="socialsheader">
+    <div class="closebutton" id="socialsclose">
+    </div>
+    <p class="headertext">Socials</p>
+    <div style="
+    width: 16px; 
+    margin-right: 6x; 
+    height: 16px;
+    "> </div>
+    </div>
+     <div style="background-color: #000; margin: 6px; border-radius: 4px; width: 520px; height: 480px; padding: 16px;">
+      <p>Socials</p>
+    </div>
+  </div>
     
 
 </body>
@@ -107,6 +128,7 @@ background-size: cover;
 
     /*DRAGGING*/
     dragElement(document.getElementById("window"));
+    dragElement(document.querySelector("#socials"))
 
 // Step 1: Define a function called `dragElement` that makes an HTML element draggable.
 function dragElement(element) {
