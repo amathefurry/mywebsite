@@ -6,7 +6,7 @@
     <style>
         .selected {
             border: dotted;
-            background-color: #00f;
+            background-color: #77f;
         }
     </style>
 </head>
@@ -64,7 +64,32 @@ background-size: cover;
 
     
     <div 
-    id = "window"
+    id = "socialswindow"
+    style="
+    border: solid; width: 512px; 
+    border-radius: 32px; 
+    padding: 12px; 
+    position: absolute;
+    ">
+    <p id="socialsclose" onclick="closeWindow(getElementById('socialswindow'))" style="
+    cursor: pointer;
+    display: flex;
+    justify-content: right;
+    color: #f00;
+    background-color: rgba(0, 0, 0, 0.25);
+    ">x</p>
+    <h1>My socials</h1>
+    <!--a very cool thing to do would be adding icons for each social-->
+    <a href="https://www.instagram.com/sillyslugcat"> instagram </a> <br>
+    <a href="https://www.discordapp.com/users/1155392571569356880"> discord </a> <br>
+    <a href="https://hackclub.enterprise.slack.com/team/U0AG55K6B89"> hackclub slack </a> <br>
+    <a href="https://www.last.fm/user/amathecutefurry"> last.fm </a> <br>
+    <a href="https://www.bandcamp.com/furryfemboy"> bandcamp </a>
+    </div>
+
+    <!--
+    <div 
+    id = "testwindow"
     style="
     border: solid; width: 512px; 
     border-radius: 32px; 
@@ -73,28 +98,7 @@ background-size: cover;
     ">
     <h1>Welcome to amaOS!</h1>
     </div>
-
-    <div
-    class="window"
-    id="socials"
-    >
-    <div
-    class="windowheader"
-    id="socialsheader">
-    <div class="closebutton" id="socialsclose">
-    </div>
-    <p class="headertext">Socials</p>
-    <div style="
-    width: 16px; 
-    margin-right: 6x; 
-    height: 16px;
-    "> </div>
-    </div>
-     <div style="background-color: #000; margin: 6px; border-radius: 4px; width: 520px; height: 480px; padding: 16px;">
-      <p>Socials</p>
-    </div>
-  </div>
-    
+    -->
 
 </body>
 <script>
@@ -111,7 +115,7 @@ background-size: cover;
     function selectIcon(element) {
         element.classList.add("selected");
         selectedIcon = element
-} 
+    } 
     function deselectIcon(element) {
         element.classList.remove("selected");
         selectedIcon = undefined;
@@ -125,10 +129,19 @@ background-size: cover;
         }
     }
 
+    /*WINDOWS*/
+    function closeWindow(element) {
+        element.style.display = "none"
+    }
+    function openWindow(element) {
+        element.style.display = "flex"
+    }
+
 
     /*DRAGGING*/
-    dragElement(document.getElementById("window"));
-    dragElement(document.querySelector("#socials"))
+    //BREAKS IF AN ELEMENT DECLARED DOESN'T EXIST
+    //dragElement(document.getElementById("testwindow"));
+    dragElement(document.getElementById("socialswindow"));
 
 // Step 1: Define a function called `dragElement` that makes an HTML element draggable.
 function dragElement(element) {
