@@ -80,12 +80,9 @@ background-size: cover;
     ">x</p>
     <h1>My socials</h1>
     <!--a very cool thing to do would be adding icons for each social-->
-    <a href="https://www.instagram.com/sillyslugcat"> instagram </a> <br>
     <a href="https://www.discordapp.com/users/1155392571569356880"> discord </a> <br>
     <a href="https://hackclub.enterprise.slack.com/team/U0AG55K6B89"> hackclub slack </a> <br>
     <a href="https://www.last.fm/user/amathecutefurry"> last.fm </a> <br>
-    <a href="https://www.bandcamp.com/furryfemboy"> bandcamp </a>
-    </div>
 
     <!--
     <div 
@@ -109,34 +106,15 @@ background-size: cover;
     timeText.innerHTML = currentTime;
     } setInterval(clock, 1000);
 
-    /*ICONS*/
-    var selectedIcon = undefined;
-
-    function selectIcon(element) {
-        element.classList.add("selected");
-        selectedIcon = element
-    } 
-    function deselectIcon(element) {
-        element.classList.remove("selected");
-        selectedIcon = undefined;
-    }
-    function iconClick(element) {
-        if (element.classList.contains("selected")) {
-            deselectIcon(element);
-            openWindow(window);
-        } else {
-            selectIcon(element);
-        }
-    }
-
     /*WINDOWS*/
+    document.getElementById('socials').onclick=function(){
+    // Remove any element-specific value, falling back to stylesheets
+    document.getElementById('socialswindow').style.display='';
+    };
+ 
     function closeWindow(element) {
         element.style.display = "none"
     }
-    function openWindow(element) {
-        element.style.display = "flex"
-    }
-
 
     /*DRAGGING*/
     //BREAKS IF AN ELEMENT DECLARED DOESN'T EXIST
