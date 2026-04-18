@@ -60,6 +60,22 @@ background-size: cover;
             color: #fff; 
             ">Socials</p>
         </div>
+
+        <div 
+    id="OTHER"
+    onclick="iconClick(getElementById('OTHER'))"
+    style="text-align: center; 
+    padding: 2px; filter: drop-shadow(0 0 8px black); 
+    width: fit-content">
+        <img src="./socials.png" style="
+        width: 64px; 
+        height: 64px; 
+        border-radius: 64px;">
+            <p style="
+            margin: 0px; 
+            color: #fff; 
+            ">Socials</p>
+        </div>
     </div>
 
     
@@ -83,7 +99,28 @@ background-size: cover;
     <a href="https://www.discordapp.com/users/1155392571569356880"> discord </a> <br>
     <a href="https://hackclub.enterprise.slack.com/team/U0AG55K6B89"> hackclub slack </a> <br>
     <a href="https://www.last.fm/user/amathecutefurry"> last.fm </a> <br>
+    </div>
+    
 
+    
+    <div 
+    id = "OTHERwindow"
+    style="
+    border: solid; width: 512px; 
+    border-radius: 32px; 
+    padding: 12px; 
+    position: absolute;
+    ">
+    <p id="OTHERclose" onclick="closeWindow(getElementById('OTHERwindow'))" style="
+    cursor: pointer;
+    display: flex;
+    justify-content: right;
+    color: #f00;
+    background-color: rgba(0, 0, 0, 0.25);
+    ">x</p>
+    <h1>something something lorem ipsum</h1>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum ipsam quidem aliquid! Possimus at ullam non. Consequatur, ut unde commodi quis ipsa laborum asperiores doloribus repellendus quia ab adipisci inventore.
+    </div>
     <!--
     <div 
     id = "testwindow"
@@ -111,6 +148,10 @@ background-size: cover;
     // Remove any element-specific value, falling back to stylesheets
     document.getElementById('socialswindow').style.display='';
     };
+    document.getElementById('OTHER').onclick=function(){
+    // Remove any element-specific value, falling back to stylesheets
+    document.getElementById('OTHERwindow').style.display='';
+    };
  
     function closeWindow(element) {
         element.style.display = "none"
@@ -118,7 +159,7 @@ background-size: cover;
 
     /*DRAGGING*/
     //BREAKS IF AN ELEMENT DECLARED DOESN'T EXIST
-    //dragElement(document.getElementById("testwindow"));
+    dragElement(document.getElementById("OTHERwindow"));
     dragElement(document.getElementById("socialswindow"));
 
 // Step 1: Define a function called `dragElement` that makes an HTML element draggable.
