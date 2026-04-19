@@ -3,16 +3,16 @@
 <meta charset="UTF-8">
 <head>
     <title>ama's website</title>
-    <style>
-        .selected {
-            border: dotted;
-            background-color: #77f;
-        }
-    </style>
 </head>
 
+<!-- TO DO LIST
+
+- add different icon images
+- use this as a to do list
+-->
+
 <body style="
-background-image: url(./background.jpg);
+background-image: url(./images/background.jpg);
 background-size: cover;
 ">
     <div style="
@@ -51,7 +51,7 @@ background-size: cover;
     style="text-align: center; 
     padding: 2px; filter: drop-shadow(0 0 8px black); 
     width: fit-content">
-        <img src="./socials.png" style="
+        <img src="./images/socials.png" style="
         width: 64px; 
         height: 64px; 
         border-radius: 64px;">
@@ -61,20 +61,37 @@ background-size: cover;
             ">Socials</p>
         </div>
 
-        <div 
-    id="OTHER"
-    onclick="iconClick(getElementById('OTHER'))"
+    <div 
+    id="about"
+    onclick="iconClick(getElementById('about'))"
     style="text-align: center; 
     padding: 2px; filter: drop-shadow(0 0 8px black); 
     width: fit-content">
-        <img src="./socials.png" style="
+        <img src="./images/socials.png" style="
         width: 64px; 
         height: 64px; 
         border-radius: 64px;">
             <p style="
             margin: 0px; 
             color: #fff; 
-            ">Socials</p>
+            ">About</p>
+        </div>
+
+    <div
+    id="lastfm"
+    onclick="iconClick(getElementById('about'))"
+    style="text-align: center; 
+    padding: 2px; filter: drop-shadow(0 0 8px black); 
+    width: fit-content">
+    <!--how hard can using the lastfm api be?-->
+        <img src="./images/socials.png" style="
+        width: 64px; 
+        height: 64px; 
+        border-radius: 64px;">
+            <p style="
+            margin: 0px; 
+            color: #fff; 
+            ">Music</p>
         </div>
     </div>
 
@@ -86,6 +103,7 @@ background-size: cover;
     border-radius: 32px; 
     padding: 12px; 
     position: absolute;
+    display: none;
     ">
     <p id="socialsclose" onclick="closeWindow(getElementById('socialswindow'))" style="
     cursor: pointer;
@@ -104,23 +122,49 @@ background-size: cover;
 
     
     <div 
-    id = "OTHERwindow"
+    id = "aboutwindow"
     style="
     border: solid; width: 512px; 
     border-radius: 32px; 
     padding: 12px; 
     position: absolute;
+    display: none;
     ">
-    <p id="OTHERclose" onclick="closeWindow(getElementById('OTHERwindow'))" style="
+    <p id="aboutclose" onclick="closeWindow(getElementById('aboutwindow'))" style="
     cursor: pointer;
     display: flex;
     justify-content: right;
     color: #f00;
     background-color: rgba(0, 0, 0, 0.25);
     ">x</p>
-    <h1>something something lorem ipsum</h1>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum ipsam quidem aliquid! Possimus at ullam non. Consequatur, ut unde commodi quis ipsa laborum asperiores doloribus repellendus quia ab adipisci inventore.
+    <h1>About</h1>
+    <!--!!!YOU SHOULD (maybe) ADD WHITE BACKGROUND TO TEXT SO IT IS READABLE!!!-->
+        Hewwo! Welcome to my website! <br>
+        <br>
+        About the creator: My name is ama (they/she), im a person from Romania, my passions include music, art, computers, hiking and honestly many more. <br>
+        About the website: This is my first serious html,css and js project. And honestly i would have forgot about it if it weren't for the hackclub free stickers that arrived and reminded me i have a project to finish. <br>
     </div>
+
+    <div 
+    id = "lastfmwindow"
+    style="
+    border: solid; width: 512px; 
+    border-radius: 32px; 
+    padding: 12px; 
+    position: absolute;
+    display: none;
+    ">
+    <p id="aboutclose" onclick="closeWindow(getElementById('lastfmwindow'))" style="
+    cursor: pointer;
+    display: flex;
+    justify-content: right;
+    color: #f00;
+    background-color: rgba(0, 0, 0, 0.25);
+    ">x</p>
+    <h1>Music</h1>
+    <!--this is gonna be hard-->
+    </div>
+
     <!--
     <div 
     id = "testwindow"
@@ -148,18 +192,23 @@ background-size: cover;
     // Remove any element-specific value, falling back to stylesheets
     document.getElementById('socialswindow').style.display='';
     };
-    document.getElementById('OTHER').onclick=function(){
+    document.getElementById('about').onclick=function(){
     // Remove any element-specific value, falling back to stylesheets
-    document.getElementById('OTHERwindow').style.display='';
+    document.getElementById('aboutwindow').style.display='';
     };
  
     function closeWindow(element) {
         element.style.display = "none"
     }
 
+    /*LASTFM API 
+!!!MAYBE DELETE THIS CUZ YOU'RE DOING SOMETHING ELSE NOW?
+    const lastfmRoot= "http://ws.audioscrobbler.com/2.0/"
+    fetch (lastfmRoot) */
+
     /*DRAGGING*/
     //BREAKS IF AN ELEMENT DECLARED DOESN'T EXIST
-    dragElement(document.getElementById("OTHERwindow"));
+    dragElement(document.getElementById("aboutwindow"));
     dragElement(document.getElementById("socialswindow"));
 
 // Step 1: Define a function called `dragElement` that makes an HTML element draggable.
