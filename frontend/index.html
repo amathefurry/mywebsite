@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="UTF-8">
+<head>
+    <title>ama's website</title>
+</head>
+
+<!-- TO DO LIST
+
+- add different icon images
+- use this as a to do list
+-->
+
+<body style="
+background-image: url(./images/background.jpg);
+background-size: cover;
+">
+    <div style="
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    border-radius: 64px;
+    backdrop-filter: blur(8px);
+    background-color: rgba(0, 0, 0, 0.25);
+    color: #fff;
+    ">
+        <p style="
+        margin-left: 32px;
+        ">
+            amaOS
+        </p> 
+        <p 
+        id="timeElement"
+        style="
+        margin-right: 32px;
+        ">
+            ...
+        </p>
+    </div>
+
+    <div
+    id="desktopApps" 
+    style="
+    padding-top: 64px; 
+    padding-left: 16px;
+    "> 
+    <div 
+    id="socials"
+    onclick="iconClick(getElementById('socials'))"
+    style="text-align: center; 
+    padding: 2px; filter: drop-shadow(0 0 8px black); 
+    width: fit-content">
+        <img src="./images/socials.png" style="
+        width: 64px; 
+        height: 64px; 
+        border-radius: 64px;">
+            <p style="
+            margin: 0px; 
+            color: #fff; 
+            ">Socials</p>
+        </div>
+
+    <div 
+    id="notes"
+    onclick="iconClick(getElementById('notes'))"
+    style="text-align: center; 
+    padding: 2px; filter: drop-shadow(0 0 8px black); 
+    width: fit-content">
+        <img src="./images/notes.png" style="
+        width: 64px; 
+        height: 64px; 
+        border-radius: 64px;">
+            <p style="
+            margin: 0px; 
+            color: #fff; 
+            ">Notes</p>
+        </div>
+
+    <div
+    id="lastfm"
+    onclick="iconClick(getElementById('notes'))"
+    style="text-align: center; 
+    padding: 2px; filter: drop-shadow(0 0 8px black); 
+    width: fit-content">
+    <!--how hard can using the lastfm api be?-->
+        <img src="./images/music.png" style="
+        width: 64px; 
+        height: 64px; 
+        border-radius: 64px;">
+            <p style="
+            margin: 0px; 
+            color: #fff; 
+            ">Music</p>
+        </div>
+    </div>
+
+    
+    <div 
+    id = "socialswindow"
+    style="
+    border: solid; width: 512px; 
+    border-radius: 32px; 
+    padding: 12px; 
+    position: absolute;
+    display: none;
+    ">
+    <p id="socialsclose" onclick="closeWindow(getElementById('socialswindow'))" style="
+    cursor: pointer;
+    display: flex;
+    justify-content: right;
+    color: #f00;
+    background-color: rgba(0, 0, 0, 0.25);
+    ">x</p>
+    <h1>My socials</h1>
+    <!--a very cool thing to do would be adding icons for each social-->
+    <a href="https://www.discordapp.com/users/1155392571569356880"> discord </a> <br>
+    <a href="https://hackclub.enterprise.slack.com/team/U0AG55K6B89"> hackclub slack </a> <br>
+    <a href="https://www.last.fm/user/amathecutefurry"> last.fm </a> <br>
+    </div>
+    
+
+    
+    <div 
+    id = "noteswindow"
+    style="
+    border: solid; width: 512px; 
+    border-radius: 32px; 
+    padding: 12px; 
+    position: absolute;
+    display: none;
+    ">
+    <p id="notesclose" onclick="closeWindow(getElementById('noteswindow'))" style="
+    cursor: pointer;
+    display: flex;
+    justify-content: right;
+    color: #f00;
+    background-color: rgba(0, 0, 0, 0.25);
+    ">x</p>
+    <h1>About</h1>
+    <!--!!!YOU SHOULD (maybe) ADD WHITE BACKGROUND TO TEXT SO IT IS READABLE!!!-->
+        Hewwo! Welcome to my website! <br>
+        <br>
+        About the creator: My name is ama (they/she), im a person from Romania, my passions include music, art, computers, hiking and honestly many more. <br>
+        About the website: This is my first serious html,css and js project. And honestly i would have forgot about it if it weren't for the hackclub free stickers that arrived and reminded me i have a project to finish. <br>
+    </div>
+
+    <div 
+    id = "lastfmwindow"
+    style="
+    border: solid; width: 1024px; 
+    border-radius: 32px; 
+    padding: 12px; 
+    position: absolute;
+    display: none;
+    ">
+    <p id="lastfmclose" onclick="closeWindow(getElementById('lastfmwindow'))" style="
+    cursor: pointer;
+    display: flex;
+    justify-content: right;
+    color: #f00;
+    background-color: rgba(0, 0, 0, 0.25);
+    ">x</p>
+    <h1>Music</h1>
+    <!--this is gonna be hard-->
+    <button onclick="lfmstats()"> Stats </button>
+    <button onclick="lfmrecent()"> Recent Tracks </button>
+    <script>
+
+         function lfmstats() {
+            let xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function () {
+
+                // Request finished and response 
+                // is ready and Status is "OK"
+                if (this.readyState == 4 && this.status == 200) {
+                    maketablestats(this);
+                }
+            };
+
+            xmlhttp.open("GET", "api/stats", true);
+            xmlhttp.send();
+        }
+
+        function maketablestats(xml) {
+            let i;
+            let xmlDoc = xml.responseXML;
+            let table =
+                `<tr><th>name</th>
+                    <th>country</th>
+                    <th>playcount</th>
+                    <th>artist count</th>
+                    <th>album count</th>
+                    <th>track count</th>
+                    <th> </th>
+                </tr>`;
+            let x = xmlDoc.getElementsByTagName("user");
+
+               for (i = 0; i < x.length; i++) {
+                table += `<tr><td> <a href="` +
+                    x[i].getElementsByTagName("url")[0]
+                        .childNodes[0].nodeValue + `">` +
+                    x[i].getElementsByTagName("realname")[0]
+                        .childNodes[0].nodeValue + "</a></td><td>" +
+                            //I HATE EVERYTHING ABOUT YOU /j jokes aside, why is embeding images so hard
+                    //x[i].getElementsByTagName(img")[0]
+                    //    .childNodes[0].nodeValue + "</td><td>" +
+                    x[i].getElementsByTagName("country")[0]
+                        .childNodes[0].nodeValue + "</td><td>" +
+                    x[i].getElementsByTagName("playcount")[0]
+                        .childNodes[0].nodeValue + "</td><td>" +
+                    x[i].getElementsByTagName("artist_count")[0]
+                        .childNodes[0].nodeValue + "</td><td>" +
+                    x[i].getElementsByTagName("album_count")[0]
+                        .childNodes[0].nodeValue + "</td><td>" +
+                    x[i].getElementsByTagName("track_count")[0]
+                        .childNodes[0].nodeValue + "</td></tr>"
+               }
+
+            // Print the xml data in table form
+            document.getElementById("statstable").innerHTML = table;
+        }
+
+
+                 function lfmrecent() {
+            let xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function () {
+
+                // Request finished and response 
+                // is ready and Status is "OK"
+                if (this.readyState == 4 && this.status == 200) {
+                    maketablerecent(this);
+                }
+            };
+
+            xmlhttp.open("GET", "api/recent", true);
+            xmlhttp.send();
+        }
+
+        function maketablerecent(xml) {
+            let i;
+            let xmlDoc = xml.responseXML;
+            let table =
+                `<td> <b> Artist </b> </td>
+                 <td> <b>  Track </b> </td>
+                 <td> <b> Album </b> </td>
+                 <tr>
+                 </tr>   `;
+            let x = xmlDoc.getElementsByTagName("track");
+
+               for (i = 0; i < 10; i++) {
+                table += `<tr><td>` +
+                    x[i].getElementsByTagName("artist")[0]
+                        .childNodes[0].nodeValue + "</td><td>" +
+                    x[i].getElementsByTagName("name")[0]
+                        .childNodes[0].nodeValue + "</td><td>" +
+                    //x[i].getElementsByTagName(<img>)[0]
+                    //    .childNodes[0].nodeValue + "</td><td>" +
+                    x[i].getElementsByTagName("album")[0]
+                        .childNodes[0].nodeValue + "</td>";
+               }
+
+            // Print the xml data in table form
+            document.getElementById("statstable").innerHTML = table;
+        }
+
+    </script>
+
+    <br><br>
+    <table id="statstable"
+    style="border-radius: 16px;
+    border-style: hidden;"
+    ></table>
+
+    <!--
+    <div 
+    id = "testwindow"
+    style="
+    border: solid; width: 512px; 
+    border-radius: 32px; 
+    padding: 12px; 
+    position: absolute;
+    ">
+    <h1>Welcome to amaOS!</h1>
+    </div>
+    -->
+
+</body>
+<script>
+    /*CLOCK*/
+    function clock() { 
+    var currentTime = new Date().toLocaleString();
+    var timeText = document.querySelector("#timeElement");
+    timeText.innerHTML = currentTime;
+    } setInterval(clock, 1000);
+
+    /*WINDOWS*/
+    document.getElementById('socials').onclick=function(){
+    document.getElementById('socialswindow').style.display='';
+    };
+
+    document.getElementById('notes').onclick=function(){
+    document.getElementById('noteswindow').style.display='';
+    };
+
+    document.getElementById('lastfm').onclick=function(){
+    document.getElementById('lastfmwindow').style.display='';
+    };
+ 
+    function closeWindow(element) {
+        element.style.display = "none"
+    }
+
+    /*LASTFM API 
+!!!MAYBE DELETE THIS CUZ YOU'RE DOING SOMETHING ELSE NOW?
+    const lastfmRoot= "http://ws.audioscrobbler.com/2.0/"
+    fetch (lastfmRoot) */
+
+    /*DRAGGING*/
+    //BREAKS IF AN ELEMENT DECLARED DOESN'T EXIST
+    dragElement(document.getElementById("noteswindow"));
+    dragElement(document.getElementById("socialswindow"));
+    dragElement(document.getElementById("lastfmwindow"));
+
+// Step 1: Define a function called `dragElement` that makes an HTML element draggable.
+function dragElement(element) {
+  // Step 2: Set up variables to keep track of the element's position.
+  var initialX = 0;
+  var initialY = 0;
+  var currentX = 0;
+  var currentY = 0;
+
+  // Step 3: Check if there is a special header element associated with the draggable element.
+  if (document.getElementById(element.id + "header")) {
+    // Step 4: If present, assign the `dragMouseDown` function to the header's `onmousedown` event.
+    // This allows you to drag the window around by its header.
+    document.getElementById(element.id + "header").onmousedown = startDragging;
+  } else {
+    // Step 5: If not present, assign the function directly to the draggable element's `onmousedown` event.
+    // This allows you to drag the window by holding down anywhere on the window.
+    element.onmousedown = startDragging;
+  }
+
+  // Step 6: Define the `startDragging` function to capture the initial mouse position and set up event listeners.
+  function startDragging(e) {
+    e = e || window.event;
+    e.preventDefault();
+    // Step 7: Get the mouse cursor position at startup.
+    initialX = e.clientX;
+    initialY = e.clientY;
+    // Step 8: Set up event listeners for mouse movement (`elementDrag`) and mouse button release (`closeDragElement`).
+    document.onmouseup = stopDragging;
+    document.onmousemove = dragElement;
+  }
+
+  // Step 9: Define the `elementDrag` function to calculate the new position of the element based on mouse movement.
+  function dragElement(e) {
+    e = e || window.event;
+    e.preventDefault();
+    // Step 10: Calculate the new cursor position.
+    currentX = initialX - e.clientX;
+    currentY = initialY - e.clientY;
+    initialX = e.clientX;
+    initialY = e.clientY;
+    // Step 11: Update the element's new position by modifying its `top` and `left` CSS properties.
+    element.style.top = (element.offsetTop - currentY) + "px";
+    element.style.left = (element.offsetLeft - currentX) + "px";
+  }
+
+  // Step 12: Define the `stopDragging` function to stop tracking mouse movement by removing the event listeners.
+  function stopDragging() {
+    document.onmouseup = null;
+    document.onmousemove = null;
+  }
+}
+
+</script>
+</html>
