@@ -5,7 +5,7 @@
   "license": "ISC",
   "author": "ama",
   "type": "commonjs",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "test"
   },
