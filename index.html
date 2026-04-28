@@ -191,6 +191,7 @@ background-size: cover;
                     <th>artist count</th>
                     <th>album count</th>
                     <th>track count</th>
+                    <th> </th>
                 </tr>`;
             let x = xmlDoc.getElementsByTagName("user");
 
@@ -207,11 +208,11 @@ background-size: cover;
                     x[i].getElementsByTagName("playcount")[0]
                         .childNodes[0].nodeValue + "</td><td>" +
                     x[i].getElementsByTagName("artist_count")[0]
-                        .childNodes[0].nodeValue + "</td></tr>";
+                        .childNodes[0].nodeValue + "</td><td>" +
                     x[i].getElementsByTagName("album_count")[0]
-                        .childNodes[0].nodeValue + "</td></tr>";
+                        .childNodes[0].nodeValue + "</td><td>" +
                     x[i].getElementsByTagName("track_count")[0]
-                        .childNodes[0].nodeValue + "</td></tr>";
+                        .childNodes[0].nodeValue + "</td></tr>"
                }
 
             // Print the xml data in table form
