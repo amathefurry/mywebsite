@@ -164,6 +164,7 @@ background-size: cover;
     <h1>Music</h1>
     <!--this is gonna be hard-->
     <button onclick="lfmstats()"> Stats </button>
+    <button onclick="lfmrecent()"> Recent Tracks </button>
     <script>
 
          function lfmstats() {
@@ -213,6 +214,49 @@ background-size: cover;
                         .childNodes[0].nodeValue + "</td><td>" +
                     x[i].getElementsByTagName("track_count")[0]
                         .childNodes[0].nodeValue + "</td></tr>"
+               }
+
+            // Print the xml data in table form
+            document.getElementById("statstable").innerHTML = table;
+        }
+
+
+                 function lfmrecent() {
+            let xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function () {
+
+                // Request finished and response 
+                // is ready and Status is "OK"
+                if (this.readyState == 4 && this.status == 200) {
+                    maketablerecent(this);
+                }
+            };
+
+            xmlhttp.open("GET", "http://localhost:3000/recent", true);
+            xmlhttp.send();
+        }
+
+        function maketablerecent(xml) {
+            let i;
+            let xmlDoc = xml.responseXML;
+            let table =
+                `<td> <b> Artist </b> </td>
+                 <td> <b>  Track </b> </td>
+                 <td> <b> Album </b> </td>
+                 <tr>
+                 </tr>   `;
+            let x = xmlDoc.getElementsByTagName("track");
+
+               for (i = 0; i < 10; i++) {
+                table += `<tr><td>` +
+                    x[i].getElementsByTagName("artist")[0]
+                        .childNodes[0].nodeValue + "</td><td>" +
+                    x[i].getElementsByTagName("name")[0]
+                        .childNodes[0].nodeValue + "</td><td>" +
+                    //x[i].getElementsByTagName(<img>)[0]
+                    //    .childNodes[0].nodeValue + "</td><td>" +
+                    x[i].getElementsByTagName("album")[0]
+                        .childNodes[0].nodeValue + "</td>";
                }
 
             // Print the xml data in table form
