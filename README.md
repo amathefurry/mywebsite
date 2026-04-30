@@ -4,7 +4,7 @@ A silly website that looks like an os thats not yet complete. Made for hackclub.
 NO GENERATIVE AI WAS USED IN THE MAKING OF THIS PROJECT, however some snippets were copied and modified from websites like stackoverflow.
 
 <br>
-I used the [webOS jam guide from hackclub](https://jams.hackclub.com/batch/webOS) for the frontend, and the [official last.fm api documentation](https://www.last.fm/api) for the backend.
+I used the webOS jam guide from hackclub (https://jams.hackclub.com/batch/webOS) for the frontend, and the official last.fm api documentation (https://www.last.fm/api) for the backend. I also used jQuery Terminal (https://terminal.jcubic.pl/) and i've learnt to use it and took inspiration from (https://www.freecodecamp.org/news/how-to-create-an-interactive-terminal-portfolio-website/).
 <br>
 
 I also got some help from slack, and i browsed several articles from websites like w3schools, developer.mozilla.org, stack overflow and similar websites, from some of which i also copied some snippets.
