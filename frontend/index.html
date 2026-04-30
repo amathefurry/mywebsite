@@ -3,13 +3,31 @@
 <meta charset="UTF-8">
 <head>
     <title>ama's website</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery.terminal/css/jquery.terminal.min.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/figlet/lib/figlet.js">
+
+        const font = 'Slant';
+
+        figlet.defaults({ fontPath: 'https://unpkg.com/figlet/fonts/' });
+        figlet.preloadFonts([font], ready);
+
+
+    </script>
 </head>
 
-
+<style>
+td {
+  padding: 0 10px;
+}
+th {
+  padding: 0 10px;
+}
+</style>
 <body style="
 background-image: url(./images/background.jpg);
 background-size: cover;
 ">
+
     <div style="
     position: absolute;
     display: flex;
@@ -17,7 +35,7 @@ background-size: cover;
     width: 100%;
     border-radius: 64px;
     backdrop-filter: blur(8px);
-    background-color: rgba(0, 0, 0, 0.25);
+    background-color: rgba(0, 0, 0, 0.1);
     color: #fff;
     ">
         <p style="
@@ -40,21 +58,24 @@ background-size: cover;
     padding-top: 64px; 
     padding-left: 16px;
     "> 
+
     <div 
-    id="socials"
-    onclick="iconClick(getElementById('socials'))"
+    id="terminal"
+    onclick="iconClick(getElementById('terminalwindow'))"
     style="text-align: center; 
     padding: 2px; filter: drop-shadow(0 0 8px black); 
     width: fit-content">
-        <img src="./images/socials.png" style="
+        <img src="./images/terminal.png" style="
         width: 64px; 
         height: 64px; 
         border-radius: 64px;">
             <p style="
             margin: 0px; 
             color: #fff; 
-            ">Socials</p>
+            ">
+            CLI</p>
         </div>
+
 
     <div 
     id="notes"
@@ -72,9 +93,26 @@ background-size: cover;
             ">Notes</p>
         </div>
 
+    <div 
+    id="socials"
+    onclick="iconClick(getElementById('socials'))"
+    style="text-align: center; 
+    padding: 2px; filter: drop-shadow(0 0 8px black); 
+    width: fit-content">
+        <img src="./images/socials.png" style="
+        width: 64px; 
+        height: 64px; 
+        border-radius: 64px;">
+            <p style="
+            margin: 0px; 
+            color: #fff; 
+            ">Socials</p>
+        </div>
+
+
     <div
     id="lastfm"
-    onclick="iconClick(getElementById('notes'))"
+    onclick="iconClick(getElementById('lastfm'))"
     style="text-align: center; 
     padding: 2px; filter: drop-shadow(0 0 8px black); 
     width: fit-content">
@@ -91,6 +129,34 @@ background-size: cover;
     </div>
 
     
+     <div
+    id = "terminalwindow"
+    class = "termi"
+    style="
+    border: solid; width: 1024px; 
+    border-radius: 32px; 
+    padding: 12px; 
+    position: absolute;
+    display: none;
+    background: #000f;
+    color: #fff;
+    ">
+
+    <!--TERMINAL SCRIPTS-->
+    <script src="https://cdn.jsdelivr.net/npm/jquery"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery.terminal/js/jquery.terminal.min.js"></script>
+    <script src="my-terminal.js"></script>
+    <!--TERMINAL SCRIPTS-->
+
+        <p id="terminalclose" style="
+        cursor: pointer;
+        display: flex;
+        justify-content: right;
+        color: #f00;
+        background-color: rgba(0, 0, 0, 0);
+        "><b onclick="closeWindow(getElementById('terminalwindow'))"><!--x--></b></p>
+    </div>
+
     <div 
     id = "socialswindow"
     style="
@@ -106,7 +172,7 @@ background-size: cover;
     display: flex;
     justify-content: right;
     color: #f00;
-    background-color: rgba(0, 0, 0, 0.25);
+    background-color: rgba(0, 0, 0, 0);
     "><b onclick="closeWindow(getElementById('socialswindow'))">x</b></p>
     <h1>My socials</h1>
     <!--a very cool thing to do would be adding icons for each social-->
@@ -132,7 +198,7 @@ background-size: cover;
     display: flex;
     justify-content: right;
     color: #f00;
-    background-color: rgba(0, 0, 0, 0.25);
+    background-color: rgba(0, 0, 0, 0);
     "><b onclick="closeWindow(getElementById('noteswindow'))">x</b></p>
     <h1>About</h1>
     <!--!!!YOU SHOULD (maybe) ADD WHITE BACKGROUND TO TEXT SO IT IS READABLE!!!-->
@@ -157,7 +223,7 @@ background-size: cover;
     display: flex;
     justify-content: right;
     color: #f00;
-    background-color: rgba(0, 0, 0, 0.25);
+    background-color: rgba(0, 0, 0, 0);
     "><b onclick="closeWindow(getElementById('lastfmwindow'))">x</b></p>
     <h1>Music</h1>
     <!--this is gonna be hard-->
@@ -266,9 +332,14 @@ background-size: cover;
 
     <br><br>
     <table id="statstable"
+    class="lfmtable"
     style="border-radius: 16px;
-    border-style: hidden;"
+    border-style: hidden;
+    border-width: 0px;
+    display: flex;
+    justify-content: center;"
     ></table>
+    </div>
 
     <!--
     <div 
@@ -305,11 +376,17 @@ background-size: cover;
     document.getElementById('lastfmwindow').style.display='';
     };
  
+    document.getElementById('terminal').onclick=function(){
+    document.getElementById('terminalwindow').style.display='';
+    };
+
     function closeWindow(element) {
         element.style.display = "none"
     }
 
-    /*LASTFM API 
+
+
+    /*LASTFM API (WAS IMPLEMENTED IN THE BACKEND)
 !!!MAYBE DELETE THIS CUZ YOU'RE DOING SOMETHING ELSE NOW?
     const lastfmRoot= "http://ws.audioscrobbler.com/2.0/"
     fetch (lastfmRoot) */
@@ -319,6 +396,7 @@ background-size: cover;
     dragElement(document.getElementById("noteswindow"));
     dragElement(document.getElementById("socialswindow"));
     dragElement(document.getElementById("lastfmwindow"));
+    dragElement(document.getElementById("terminalwindow"));
 
 // Step 1: Define a function called `dragElement` that makes an HTML element draggable.
 function dragElement(element) {
@@ -371,6 +449,11 @@ function dragElement(element) {
     document.onmousemove = null;
   }
 }
+
+    /*TERMINAL*/
+
+    // /frontend/my-terminal.js
+
 
 </script>
 </html>
