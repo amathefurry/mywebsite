@@ -105,6 +105,7 @@ Disk (/home): 97.98 GiB / 425.24 GiB (23%) - btrfs`)
         }
         document.getElementById('terminalwindow').style.display='none';
     },
+    // maybe add some day if revisiting the project: LAST.FM CLI COMMANDS >:3
 };
 
 const formatter = new Intl.ListFormat('en', {
