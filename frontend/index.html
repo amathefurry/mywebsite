@@ -5,11 +5,6 @@
     <title>ama's website</title>
 </head>
 
-<!-- TO DO LIST
-
-- add different icon images
-- use this as a to do list
--->
 
 <body style="
 background-image: url(./images/background.jpg);
@@ -104,19 +99,20 @@ background-size: cover;
     padding: 12px; 
     position: absolute;
     display: none;
+    background: #fff6;
     ">
-    <p id="socialsclose" onclick="closeWindow(getElementById('socialswindow'))" style="
+    <p id="socialsclose" style="
     cursor: pointer;
     display: flex;
     justify-content: right;
     color: #f00;
     background-color: rgba(0, 0, 0, 0.25);
-    ">x</p>
+    "><b onclick="closeWindow(getElementById('socialswindow'))">x</b></p>
     <h1>My socials</h1>
     <!--a very cool thing to do would be adding icons for each social-->
-    <a href="https://www.discordapp.com/users/1155392571569356880"> discord </a> <br>
-    <a href="https://hackclub.enterprise.slack.com/team/U0AG55K6B89"> hackclub slack </a> <br>
-    <a href="https://www.last.fm/user/amathecutefurry"> last.fm </a> <br>
+        <a href="https://www.discordapp.com/users/1155392571569356880" target="_blank"> discord </a> <br>
+        <a href="https://hackclub.enterprise.slack.com/team/U0AG55K6B89" target="_blank"> hackclub slack </a> <br>
+        <a href="https://www.last.fm/user/amathecutefurry" target="_blank"> last.fm </a> <br>
     </div>
     
 
@@ -129,14 +125,15 @@ background-size: cover;
     padding: 12px; 
     position: absolute;
     display: none;
+    background: #fff6;
     ">
-    <p id="notesclose" onclick="closeWindow(getElementById('noteswindow'))" style="
+    <p id="notesclose" style="
     cursor: pointer;
     display: flex;
     justify-content: right;
     color: #f00;
     background-color: rgba(0, 0, 0, 0.25);
-    ">x</p>
+    "><b onclick="closeWindow(getElementById('noteswindow'))">x</b></p>
     <h1>About</h1>
     <!--!!!YOU SHOULD (maybe) ADD WHITE BACKGROUND TO TEXT SO IT IS READABLE!!!-->
         Hewwo! Welcome to my website! <br>
@@ -153,14 +150,15 @@ background-size: cover;
     padding: 12px; 
     position: absolute;
     display: none;
+    background: #fff6;
     ">
-    <p id="lastfmclose" onclick="closeWindow(getElementById('lastfmwindow'))" style="
+    <p id="lastfmclose" style="
     cursor: pointer;
     display: flex;
     justify-content: right;
     color: #f00;
     background-color: rgba(0, 0, 0, 0.25);
-    ">x</p>
+    "><b onclick="closeWindow(getElementById('lastfmwindow'))">x</b></p>
     <h1>Music</h1>
     <!--this is gonna be hard-->
     <button onclick="lfmstats()"> Stats </button>
